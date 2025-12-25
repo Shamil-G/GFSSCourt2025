@@ -1,1 +1,26 @@
 # GFSSCourt2025
+# Генерим ключ для Linux в папке ~/.ssh/
+ ssh-keygen -t ed25519 -C "s.guseeynov@gmail.com"
+# Размещаем строки ниже в файле ~/.ssh/config
+# Конфигурация для GitHub
+Host github.com
+    User git
+    HostName github.com
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
+# Проверяем подключение к GitHub
+ssh -T git@github.com
+
+# Проверяем подключение к GitHub
+git remote -v
+
+# Изменим протокол запроса с https на git запрос
+git remote set-url origin git@github.com:Shamil-G/GFSSCourt.git
+							
+
+# GFSSCourt
+git remote add gitlab http://192.168.20.81/root/gfsscourt.git
+
+#
+Для учета судебных дел по переплатам социальных выплат

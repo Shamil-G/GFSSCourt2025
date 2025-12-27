@@ -1,0 +1,40 @@
+﻿<form style="width: 90%; margin-top: 3px;" class="form_op" id="scammerForm" method="POST" action="/add_scammer">
+    <table style="width: 90%; margin:4px 0px 4px 0px; box-shadow: none">
+        <colgroup>
+            <col style="width: 224px">
+            <col style="min-width: 224px">
+        </colgroup>
+        <tbody>
+            <tr class="disabled-row" style="padding: 4px 0px;">
+                <td style="border: none; width: 60px; text-align: left; font-size: 18px;">
+                    {{ res_value('SCAMMER_IIN') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_s_form" style="font-size: 18px; width: 140px;" type="text" name="iin" maxlength="12" required>
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">{{ res_value('SCAMMER_ORG_NAME') }}:</td>
+                <td style="border: none; text-align: left">
+                    <input class="input_s_form" style="font-size: 18px; text-align: left; width: 98%" type="text" name="org_name">
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">📅 * {{ res_value('SCAMMER_DATE_NOTIFICATION') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="date_notification" required></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">
+                    {{ res_value('SCAMMER_NOTIFICATION') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_s_form" style="font-size: 18px; text-align: left; width: 98%" type="text" name="notification">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+    <!--<button type="button" onclick="submitFormViaFetch('scammerForm', 'scammer')">💾 {{ res_value('BUTTON_SAVE') }}</button>-->
+</form>

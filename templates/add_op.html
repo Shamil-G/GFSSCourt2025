@@ -1,0 +1,109 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}
+{{ res_value('ADD_OVERPAYMENTS') }}
+{% endblock %}
+
+{% block main_title %}
+{{ res_value('ADD_OVERPAYMENTS') }}
+{% endblock %}
+
+
+{% block body %}
+<div class="title_message">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes" style="margin: 0">
+        {% for msg in messages %}
+        <li class="td_value_bold"> {{ msg }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+    <form class="form_login" method="POST">
+        <table>
+            <tbody id="court_mainHelper">
+                <tr class="disabled-row">
+                    <td style="text-align: left; border:none; width: 240px">* {{res_value('IIN')}}</td>
+                    <td style="text-align: left; border:none;"><input style="margin: 4px 0px; width: 148px; border-color: lightgray" class="input_s" name="iin" pattern="[0-9]{12}" type="text" maxlength="12" autocomplete="off" required></td>
+                </tr>
+                <tr class="disabled-row">
+                    <td style="text-align: left; border:none; width: 240px">* {{res_value('RISK_DATE')}}</td>
+                    <td style="text-align: left; border:none; padding: 4px 0px"><input style="margin: 5px 0px 4px 4px; width: 148px; font-size: 18px" class="input_d" name="risk_date" pattern="[0-9]{12}" type="date" autocomplete="off" required></td>
+                </tr>
+                <tr class="disabled-row">
+                    <td style="text-align: left; border:none;">{{res_value('RFPM_ID')}}</td>
+                    <td style="text-align: left; border: none;">
+
+                        <div id="court_MenuZone" class="dropdown" data-role="menu">
+                            <input type="hidden" name="rfpm_id" id="menuValue">
+                            <button style="min-width: 232px; border: 1px solid lightgray; padding: 6px 9px 4px 2px"
+                                    type="button" class="dropdown-button period-button" id="menuButton">
+                                <i class="fas fa-list" style="margin-left: 12px; color:green;"></i>
+                                <span class="label" style="margin-left: 4px; padding: 2px 6px 2px 8px">{{res_value('SELECT_RFPM')}}</span>
+                                <span style="display: inline-block; margin-right: 12px" class="caret"></span>
+                            </button>
+                            <div style="min-width: 140px;" class="dropdown-content">
+                                <a data-value="{{res_value('RFPM_0701')}}" data-label="{{res_value('RFPM_0701')}}"><i class="fas fa-home" style="color: forestgreen;"></i>{{res_value('RFPM_0701')}}</a>
+                                <a><i class="fas fa-wheelchair" style="color: forestgreen;"></i>{{res_value('RFPM_0702')}}</a>
+                                <a><i class="fas fa-circle" style="color: forestgreen;"></i>{{res_value('RFPM_0703')}}</a>
+                                <a><i class="fas fa-heartbeat" style="color: forestgreen;"></i>{{res_value('RFPM_0704')}}</a>
+                                <a><i class="fas fa-child" style="color:forestgreen;"></i>{{res_value('RFPM_0705')}}</a>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr class="disabled-row">
+                    <td style="text-align: left; border: none;">{{res_value('SUM_CIV_AMOUNT')}}</td>
+                    <td style="text-align: left; border: none;"><input style="margin: 4px 0px; border-color: lightgray; max-width: 148px" class="input_s" type="number" min="0.00" name="sum_civ_amount" autocomplete="off"></td>
+                </tr>
+                <tr class="disabled-row">
+                    <td style="text-align: left; border: none; padding-bottom: 24px">* {{res_value('FILIAL_NAME')}}</td>
+                    <td style="text-align: left; border: none; padding-bottom: 24px">
+                        {% if top_control==1 %}
+                        <div id="court_MenuZone" class="dropdown" data-role="menu">
+
+                            <input type="hidden" id="menuValue">
+                            <button style="min-width: 360px; border: 1px solid lightgray; padding: 6px 9px 4px 2px;" type="button" class="dropdown-button period-button"
+                                    id="menuButton">
+                                <i class="fas fa-map-signs" style="margin-left: 12px; color: green;"></i>
+                                <span class="label" style="padding: 2px 6px 2px 8px">{{res_value('SELECT_REGION')}}</span>
+                                <span style="display: inline-block; margin-right: 12px" class="caret"></span>
+                            </button>
+                            <!--position: absolute; z-index: 5; top: 100%; left: 0; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding-top: 8px"-->
+                            <div style="min-width: 410px;"
+                                 class="dropdown-content">
+                                {% for code, name in list_region %}
+                                <a data-value="{{ code }}" data-label="{{ name }}"><i class="fas fa-globe" style="color: green;"></i>{{ name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% else %}
+                            <input style="margin: 4px 16px 16px 0px; width: 640px; border-color: lightgray" class="input_s" type="text" name="region" placeholder="{{ g.user.dep_name }}" value="{{region}}" autocomplete="on" readonly required>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <!--<tr>
+                    <td colspan="1">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <div class="flash-message">
+                            {% for msg in messages %}
+                            <div class="alert">{{ msg }}</div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </td>
+                </tr>-->
+            </tfoot>
+        </table>
+        <button style="margin-top: 24px" type="submit">{{ res_value('BUTTON_SAVE') }}</button>
+    </form>
+    <a style="margin: 12px 0px 0px 24px">{{ mess }}</a>
+    <script type="module" id="pageScript" data-page="new_court" src="static/js/main.js"></script>
+{% endblock %}

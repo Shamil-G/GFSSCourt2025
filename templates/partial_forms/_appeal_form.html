@@ -1,0 +1,65 @@
+﻿<form class="form_op" id="appealForm" style="margin-top: 3px;" method="POST" action="/add_appeal">
+    <table style="width: 100%; margin:4px 0px 4px 0px; box-shadow: none">
+        <colgroup>
+            <col style="width: 196px">
+        </colgroup>
+        <tbody>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">📅 * {{ res_value('APPEAL_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="appeal_date" required></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">📅 {{ res_value('EFFECTIVE_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="effective_date"></td>
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('APPEAL_SOLUTION') }}:</td>
+                <td style="border: none; text-align: left">
+                    <div class="dropdown" data-role="menu">
+                        <input class="input_s_form" type="hidden" name="appeal_solution" id="menuValue">
+                        <button type="button" class="dropdown-button" id="menuButton">
+                        <i class="fas fa-bars"></i>
+                        <span class="label">{{ res_value('SELECT_SOLUTION') }}</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- data-value - отправляется через submit, data-lable - отображается -->
+                            <a data-value="{{res_value('APPEAL_SOLUTION_SATISFY')}}" data-label="{{res_value('APPEAL_SOLUTION_SATISFY')}}"><i class="fas fa-home"></i>{{res_value('APPEAL_SOLUTION_SATISFY')}}</a>
+                            <a data-value="{{res_value('APPEAL_SOLUTION_REFUSE')}}" data-label="{{res_value('APPEAL_SOLUTION_REFUSE')}}"><i class="fas fa-info-circle"></i>{{res_value('APPEAL_SOLUTION_REFUSE')}}</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('APPEAL_CASSATION_SOLUTION') }}:</td>
+
+                <td style="border: none; text-align: left">
+                    <div class="dropdown" data-role="menu">
+                        <input class="input_s_form" type="hidden" name="cassation_appeal_solution" id="menuValue">
+                        <button type="button" class="dropdown-button" id="menuButton">
+                        <i class="fas fa-bars"></i>
+                        <span class="label">{{ res_value('SELECT_SOLUTION') }}</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- data-value - отправляется через submit, data-lable - отображается -->
+                            <a data-value="{{res_value('APPEAL_SOLUTION_SATISFY')}}" data-label="{{res_value('APPEAL_SOLUTION_SATISFY')}}"><i class="fas fa-home"></i>{{res_value('APPEAL_SOLUTION_SATISFY')}}</a>
+                            <a data-value="{{res_value('APPEAL_SOLUTION_REFUSE')}}" data-label="{{res_value('APPEAL_SOLUTION_REFUSE')}}"><i class="fas fa-info-circle"></i>{{res_value('APPEAL_SOLUTION_REFUSE')}}</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('COURT_NAME') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_s_form" type="text" name="court_name" required></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+</form>

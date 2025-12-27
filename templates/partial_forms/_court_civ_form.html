@@ -1,0 +1,60 @@
+﻿<form class="form_op" id="civForm" style="margin-top: 3px;" method="POST" action="/add_court_civ">
+    <table style="width: 100%; margin:4px 0px 4px 0px; box-shadow: none">
+        <colgroup>
+            <col style="width: 176px">
+        </colgroup>
+        <tbody>
+            <tr class="disabled-row">
+                <td style="border: none; width: 220px; text-align: left">📅 * {{ res_value('SUBMISSION_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="submission_date" required></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">📆 {{ res_value('SOLUTION_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="solution_date"></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">📅 {{ res_value('EFFECTIVE_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="effective_date"></td>
+            </tr>
+
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('NUM_SOLUTION') }}:</td>
+                <td style="border: none; text-align: left"><input style="width: 220px" class="input_s_form" type="text" name="num_solution"></td>
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('SOLUTION_CIV_PART') }}:</td>
+
+                <td style="border: none; text-align: left">
+                    <div class="dropdown" data-role="menu">
+                        <input type="hidden" name="solution" id="menuValue" style="width: 220px" class="input_s_form">
+                        <button type="button" class="dropdown-button" id="menuButton">
+                        <i class="fas fa-bars"></i>
+                        <span class="label">{{ res_value('SELECT_SOLUTION') }}</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- data-value - отправляется через submit, data-label - отображается -->
+                            <a data-value="{{res_value('SOLUTION_SATISFY')}}" data-label="{{res_value('SOLUTION_SATISFY')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_SATISFY')}}</a>
+                            <a data-value="{{res_value('SOLUTION_REFUSE')}}" data-label="{{res_value('SOLUTION_REFUSE')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_REFUSE')}}</a>
+                            <a data-value="{{res_value('SOLUTION_MEDIATION_AGGREMENT')}}" data-label="{{res_value('SOLUTION_MEDIATION_AGGREMENT')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_MEDIATION_AGGREMENT')}}</a>
+                            <a data-value="{{res_value('SOLUTION_SETTLEMENT_AGGREMENT')}}" data-label="{{res_value('SOLUTION_SETTLEMENT_AGGREMENT')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_SETTLEMENT_AGGREMENT')}}</a>
+                            <a data-value="{{res_value('SOLUTION_RETURN_DOC')}}" data-label="{{res_value('SOLUTION_RETURN_DOC')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_RETURN_DOC')}}</a>
+                            <a data-value="{{res_value('SOLUTION_TERMINATION')}}" data-label="{{res_value('SOLUTION_TERMINATION')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_TERMINATION')}}</a>
+                            <a data-value="{{res_value('SOLUTION_DISMISSED')}}" data-label="{{res_value('SOLUTION_DISMISSED')}}"><i class="fas fa-home"></i>{{res_value('SOLUTION_DISMISSED')}}</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left">{{ res_value('COURT_NAME') }}:</td>
+                <td style="border: none; text-align: left"><input style="width: 95%" class="input_s_form" type="text" name="court_name" required></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+</form>

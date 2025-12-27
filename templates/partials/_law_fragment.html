@@ -1,0 +1,50 @@
+{% if law_items %}
+<table style="width: 100%; margin-top: 3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 160px">
+        <col style="width: 160px">
+        <col style="width: 190px">
+        <col style="width: 230px">
+        <col />
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('SUBMISSION_DATE') }}</th>
+            <th>{{ res_value('DECISION_DATE') }}</th>
+            <th>{{ res_value('EFFECTIVE_DATE') }}</th>
+            <th>{{ res_value('SUBMISSION_DOC') }}</th>
+            <th>{{ res_value('LAW_DECISION') }}</th>
+            <th>{{ res_value('ORG_NAME') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in law_items %}
+        <tr>
+            <td>{{ item.submission_date }}</td>
+            <td>{{ item.decision_date }}</td>
+            <td>{{ item.effective_date }}</td>
+            <td>{{ item.submission_doc }}</td>
+            <td style="text-align: left">{{ item.decision }}</td>
+            <td style="text-align: left">{{ item.orgname }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        <tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_LAW_ITEMS') }}</p>
+{% endif %}

@@ -1,0 +1,58 @@
+﻿<form class="form_op" id="lawForm" style="margin-top: 3px; width: 95%" method="POST" action="/add_law">
+    <table style="margin:4px 0px 4px 0px; box-shadow: none">
+        <tbody>
+            <tr class="disabled-row">
+                <td style="border: none; width: 260px; text-align: left; font-size: 18px;">📅 * {{ res_value('SUBMISSION_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="submission_date" required></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">📆 {{ res_value('KUI_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="kui_date"></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">📆 {{ res_value('EXCITEMENT_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="decision_date"></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left" data-help="effective_date" data-role="helper" class="has-helper">📅 {{ res_value('RESOLUTION_DATE') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_d" style="font-size: 18px;" type="date" name="effective_date"></td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left" data-help="submission_doc" data-role="helper" class="has-helper">📅 {{ res_value('SUBMISSION_DOC') }}:</td>
+                <td style="border: none; text-align: left"><input class="input_s_form" style="font-size: 18px;width: 240px" type="text" name="submission_doc"></td>
+            </tr>
+
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">{{ res_value('LAW_DECISION') }}:</td>
+
+                <td style="border: none; text-align: left">
+                    <div class="dropdown" data-role="menu">
+                        <input type="hidden" name="decision" id="menuValue">
+                        <button type="button" class="dropdown-button" id="menuButton">
+                        <i class="fas fa-bars"></i>
+                        <span class="label">{{ res_value('SELECT_SOLUTION') }}</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <!-- data-value - отправляется через submit, data-lable - отображается -->
+                            <a data-value="{{res_value('SELECT_LAW_REGISTRING')}}" data-label="{{res_value('SELECT_LAW_REGISTRING')}}"><i class="fas fa-home"></i>{{res_value('SELECT_LAW_REGISTRING')}}</a>
+                            <a data-value="{{res_value('SELECT_LAW_RETURN')}}" data-label="{{res_value('SELECT_LAW_RETURN')}}"><i class="fas fa-info-circle"></i>{{res_value('SELECT_LAW_RETURN')}}</a>
+                            <a data-value="{{res_value('SELECT_LAW_BREAK')}}" data-label="{{res_value('SELECT_LAW_BREAK')}}"><i class="fas fa-info-circle"></i>{{res_value('SELECT_LAW_BREAK')}}</a>
+                            <a data-value="{{res_value('SELECT_LAW_SKIP')}}" data-label="{{res_value('SELECT_LAW_SKIP')}}"><i class="fas fa-home"></i>{{res_value('SELECT_LAW_SKIP')}}</a>
+                            <a data-value="{{res_value('SELECT_LAW_OPEN')}}" data-label="{{res_value('SELECT_LAW_OPEN')}}"><i class="fas fa-info-circle"></i>{{res_value('SELECT_LAW_OPEN')}}</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">{{ res_value('ORG_NAME') }}:</td>
+                <td style="border: none; text-align: left"><input style="width: 98%" class="input_s_form" type="text" name="orgname" required></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+</form>

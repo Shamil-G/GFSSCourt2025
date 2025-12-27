@@ -1,0 +1,44 @@
+{% if refunding_items %}
+<table style="width: 860px; margin-top:3px">
+    <colgroup>
+        <col style="width: 110px">
+        <col style="width: 185px">
+        <col style="width: 175px">
+        <col style="width: 120px">
+        <col style="width: 120px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('IIN') }}</th>
+            <th>{{ res_value('MHMH_ID') }}</th>
+            <th>{{ res_value('PMDL_N') }}</th>
+            <th>{{ res_value('PAY_DATE') }}</th>
+            <th>{{ res_value('SUM_PAY') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in refunding_items %}
+        <tr>
+            <td>{{ item.iin }}</td>
+            <td>{{ item.mhmh_id}}</td>
+            <td>{{ item.pmdl_n}}</td>
+            <td>{{ item.pay_date}}</td>
+            <td style="text-align: right">{{ item.sum_pay }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_REFUNDING_ITEMS') }}</p>
+{% endif %}

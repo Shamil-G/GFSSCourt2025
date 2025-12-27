@@ -1,0 +1,50 @@
+{% if court_civ_items %}
+<table style="width: 100%; margin-top: 3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 160px">
+        <col style="width: 160px">
+        <col style="width: 200px">
+        <col style="width: 260px">
+        <col />
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('SUBMISSION_DATE') }}</th>
+            <th>{{ res_value('SOLUTION_DATE') }}</th>
+            <th>{{ res_value('EFFECTIVE_DATE') }}</th>
+            <th>{{ res_value('NUM_SOLUTION') }}</th>
+            <th>{{ res_value('SOLUTION_CIV_PART') }}</th>
+            <th>{{ res_value('COURT_NAME') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in court_civ_items %}
+        <tr>
+            <td>{{ item.submission_date }}</td>
+            <td>{{ item.solution_date }}</td>
+            <td>{{ item.effective_date }}</td>
+            <td>{{ item.num_solution }}</td>
+            <td style="text-align: left">{{ item.solution }}</td>
+            <td style="text-align: left">{{ item.court_name }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        <tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_COURT_CIV_ITEMS') }}</p>
+{% endif %}

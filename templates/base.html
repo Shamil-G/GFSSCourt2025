@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru" data-theme="color">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        :root {
+            text-decoration: none;
+            text-shadow: 1px 2px 3px grey;
+            border-radius: 3px;
+            border: 1px
+        }
+
+        html, body {
+            margin: 0;
+            padding: 1px;
+            height: 100%;
+            width: 100%;
+            font-family: Calibri;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>{% block title %}{% endblock %}</title>
+    {% block javascript %}{% endblock %}
+</head>
+
+<body style="margin:0; padding:1px; height:100%; width:100%; font-family:Calibri; overflow:hidden;">
+
+    <div id="global-modal-layer"></div>
+
+    <common-container style="height: 100vh; display: grid; grid-template-columns: auto 7fr; grid-gap: 1px; grid-template-rows: 44px 44px 1fr 36px;
+                        grid-template-areas: 'header header' 'nav article_title' 'nav article' 'footer footer';">
+
+        <header style="display: grid; padding-left: 16px; grid-template-columns: 4fr 4fr 4fr; align-items: center; grid-area: header; background-size: cover; background-position: center;">
+            <header-l style="margin-left: 10px; font-weight: bold; display: flex; align-items: center; justify-content: flex-start;">
+                <img style="width: 28px; height: 27px; padding: 0px; display: inline-block; text-align: center; vertical-align: middle;" src="/static/img/logo-g.ico">
+                <a style="font-size:20px">&emsp;{{ res_value('APP_NAME') }}</a>
+            </header-l>
+
+            <header-c style="margin: 4px 24px; text-align: right; display: flex; align-items: center; justify-content: center;">
+                <!--<a class="nav_button" style="margin-left: 16px; padding: 6px 24px" href="https://tolem.gfss.kz">Tolem</a>-->
+                <a class="nav-button" style="margin-left: 16px; padding: 6px 24px" href="http://qyzmetker:80">Qyzmetker</a>
+                <!--<a class="nav_button" style="margin-left: 16px; padding: 6px 24px" href="http://qyzmetker:8090">Python Reports</a>-->
+            </header-c>
+            <header-r style="margin-right: 10px; text-align: right; display: flex; align-items: center; justify-content: flex-end;">
+                <div>
+                    <a href="#" onclick="toggleTheme()">
+                        <img id="theme-icon"
+                             src="/static/img/dark-icon.png"
+                             style="width: 24px; height: 24px; border-radius: 18px; margin: 2px 2px; vertical-align: middle;" />
+                    </a>
+                </div>
+
+                {% if session['language'] == 'ru' %}
+                <a class="nav-button" style="margin-left: 24px; padding: 6px 24px; min-width: 32px; text-align:center" href="/language/kz">ҚАЗ</a>
+                {% else %}
+                <a class="nav-button" style="margin-left: 24px; padding: 6px 24px; min-width: 32px; text-align:center" href="/language/ru">РУС</a>
+                {% endif %}
+            </header-r>
+        </header>
+
+        <nav style="margin: 0px; padding: 1px; display: grid; grid-template-rows: repeat(12,minmax(48px, 54px)); grid-row-gap: 1px; grid-area: nav; align-content: stretch; background-size: cover; background-position: center;">
+            {% if g.user.is_authenticated %}
+
+            <a class="nav-button" href="/list_op" style="min-width: 125px; text-decoration: none; align-items: center; padding: 12px 18px 12px 12px;
+                    display: flex; position: relative; border-radius: 3px; font-weight: 500;">{{ res_value('START_OVERPAYMENTS') }}</a>
+            <a class="nav-button" href="/logout" style="min-width: 125px; text-decoration: none; align-items: center; padding: 12px 18px 12px 12px;
+                    display: flex; position: relative; border-radius: 3px; font-weight: 500;">{{ res_value('LOGOUT_BUTTON') }}</a>
+            {% else %}
+            <a class="nav-button" href="/login" style="min-width: 125px; text-decoration: none; align-items: center; padding: 12px 18px 12px 12px;
+                    display: flex; position: relative; border-radius: 3px; font-weight: 500;">{{ res_value('LOGIN_BUTTON') }}</a>
+            {% endif %}
+            <p></p>
+        </nav>
+
+        <article_title style="display: grid; padding-right: 8px; font-size: 20px; align-items: center; align-items: center; grid-area: article_title; grid-template-columns: 1fr 1fr;">
+            {% block main_title %}{% endblock %}
+        </article_title>
+
+        <article style="grid-area: article; display: flex; flex-direction: column; min-height: 100%; min-height: 0;">
+            {% block body %}{% endblock %}
+        </article>
+
+
+        <footer style="display: grid; padding: 8px 16px; align-items: center; grid-template-columns: 1fr 6fr; grid-area: footer; background-size: cover; background-position: center;">
+            <footer-l style="margin-left: 10px; font-weight: bold; display: flex; align-items: center; justify-content: flex-start;">
+                <small>© 2021</small>
+            </footer-l>
+            <footer-r style="margin-right: 10px; text-align: right; display: flex; align-items: center; justify-content: flex-end;">
+                <small style="visibility: hidden">{{ res_value('CREATORS') }}</small>
+                <small style="visibility: hidden">{{ res_value('FOR_DEVELOPERS') }}</small>
+                <a style="font-size:14px">{% if g.user.is_authenticated %} {{ g.user.full_name }} {% endif %}</a>
+            </footer-r>
+        </footer>
+    </common-container>
+    <script>
+        const html = document.documentElement;
+        // Загружаем сохранённую тему
+        const saved = localStorage.getItem("theme");
+        if (saved) { html.dataset.theme = saved; }
+
+        function toggleTheme() {
+            const newTheme = html.dataset.theme === "dark" ? "color" : "dark";
+            html.dataset.theme = newTheme;
+            localStorage.setItem("theme", newTheme);
+
+            document.getElementById("theme-icon").src =
+                newTheme === "dark"
+                    ? "/static/img/color-icon.png"
+                    : "/static/img/dark-icon.png";
+        }
+    </script>
+</body>
+
+</html>

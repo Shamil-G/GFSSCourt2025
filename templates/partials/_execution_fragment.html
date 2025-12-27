@@ -1,0 +1,44 @@
+{% if execution_items %}
+<table style="width: 1320px; margin-top: 3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 200px">
+        <col style="width: 240px">
+        <col style="width: 360px">
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th data-help="transfer_date" data-role="helper" class="has-helper">{{ res_value('TRANSFER_DATE') }}</th>
+            <th data-help="start_date" data-role="helper" class="has-helper">{{ res_value('START_DATE') }}</th>
+            <th>{{ res_value('PHONE') }}</th>
+            <th>{{ res_value('COURT_EXECUTOR') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in execution_items %}
+        <tr>
+            <td>{{ item.transfer_date }}</td>
+            <td>{{ item.start_date }}</td>
+            <td>{{ item.phone }}</td>
+            <td style="text-align: left">{{ item.court_executor }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        <tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_EXECUTION_ITEMS') }}</p>
+{% endif %}

@@ -1,0 +1,45 @@
+{% if scammer_items %}
+<table style="width: 100%; margin-top:3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 360px">
+        <col />
+        <col style="width: 120px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('SCAMMER_IIN') }}</th>
+            <th>{{ res_value('SCAMMER_FIO') }}</th>
+            <th>{{ res_value('SCAMMER_ORG_NAME') }}</th>
+            <th>{{ res_value('SCAMMER_DATE_NOTIFICATION') }}</th>
+            <th>{{ res_value('SCAMMER_NOTIFICATION') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in scammer_items %}
+        <tr>
+            <td>{{ item.iin }}</td>
+            <td style="text-align: left">{{ item.scammer_fio}}</td>
+            <td style="text-align: left">{{ item.scammer_org_name}}</td>
+            <td style="text-align: center">{{ item.date_notification}}</td>
+            <td style="text-align: left">{{ item.notification}}</td>
+            <td style="text-align: left">{{ item.employee}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_SCAMMER_ITEMS') }}</p>
+{% endif %}

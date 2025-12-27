@@ -1,0 +1,117 @@
+﻿ {% for el in rows %}
+<tr data-order="{{ el.order_num }}" class="clickable-row">
+    <td>
+        <a>{{ el.order_num }}</a>
+    </td>
+
+    <td style="text-align: left">
+        <div style="min-width: 358px; padding: 4px 4px; text-align: left; display: flex; align-items: center; justify-content: space-between; position:relative"
+             data-role="menu-region">
+            <a id="region_name" style="flex: 1">
+                {{ el.region }}
+            </a>
+            {% if g.user.top_control == 1 %}
+                <input type="hidden" name="regionInput" id="regionInput">
+
+                <div style="min-width: 160px; position: absolute; z-index: 5; top: 100%; left: 0; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding-top: 8px" 
+                     class="dropdown-content"></div>
+
+                <!-- управляющие кнопки -->
+                <div class="region-actions" style="display: flex; gap: 6px; margin-left: 4px">
+                    <button style="display: none; background: transparent; padding: 6px 9px 4px 2px; border: 1px solid" type="button"
+                            class="dropdown-button select-region tiny-btn"
+                            id="menuButton">
+                        <span style="display: inline-block" class="caret"></span>
+                    </button>
+                    <button data-id="{{ el.order_num }}" type="button" class="region-edit edit-btn tiny-btn" data-field="region">✏️</button>
+                    <button data-id="{{ el.order_num }}" type="button" class="region-save edit-btn tiny-btn" style="display:none;" data-field="region" data-url="/update-field">💾</button>
+                    <button data-id="{{ el.order_num }}" type="button" class="region-cancel edit-btn tiny-btn" style="display:none;" data-field="region">❌</button>
+                </div>
+            {% endif %}
+        </div>
+    </td>
+
+
+    <td style="text-align: left">
+        {{ el.fio }}
+    </td>
+    <td>
+        {{ el.iin }}
+    </td>
+    <td style="min-width: 202px;">
+        <div data-role="edit-row" style="padding: 4px 4px; text-align: left; display: flex; align-items: center; justify-content: space-between; position: relative">
+            {% set parts = el.risk_date.split('.') %}
+            {% set html_date = parts[2] ~ '-' ~ parts[1] ~ '-' ~ parts[0] %}
+            <input type="date" style="width: 136px; flex: 1"
+                   name="risk_date"
+                   value="{{ html_date }}"
+                   readonly
+                   class="risk-input input_d" />
+            <div class="region-actions" style="display: flex; gap: 6px; margin-left: 4px">
+                <button class="edit-btn tiny-btn" data-id="{{ el.order_num }}" data-field="risk_date">✏️</button>
+                <button class="save-btn tiny-btn" data-id="{{ el.order_num }}" data-field="risk_date" style="display:none;">💾</button>
+                <button class="cancel-btn tiny-btn" data-id="{{ el.order_num }}" data-field="risk_date" style="display:none;">❌</button>
+            </div>
+        </div>
+    </td>
+    <td style="text-align: left">
+        {{ el.rfpm_id }}
+    </td>
+    {% if g.user.top_control==0 %}
+    <td style="text-align: right">
+        {{ el.sum_civ_amount }}
+    </td>
+    {% else %}
+    <td style="min-width: 182px; text-align: left; padding: 4px 4px;">
+        <div data-role="edit-row" style="padding: 4px 4px; text-align: left; display: flex; align-items: center; justify-content: space-between; position: relative">
+            <input type="text" style="width: 115px; text-align: right; font-family: monospace; font-size: 16px; flex: 1"
+                   name="sum_civ_amount"
+                   value="{{ el.sum_civ_amount.strip() }}"
+                   inputmode="decimal"
+                   pattern="^\d+(\.\d{1,2})?$"
+                   readonly
+                   class="sum_civ_amount input_s_form" />
+
+            <div class="region-actions" style="display: flex; gap: 2px; margin-left: 4px">
+                <button class="edit-btn tiny-btn" data-id="{{ el.order_num }}" data-field="sum_civ_amount">✏️</button>
+                <button class="save-btn tiny-btn" data-id="{{ el.order_num }}" data-field="sum_civ_amount" style="display:none;">💾</button>
+                <button class="cancel-btn tiny-btn" data-id="{{ el.order_num }}" data-field="sum_civ_amount" style="display:none;">❌</button>
+            </div>
+        </div>
+    </td>
+    {% endif %}
+    <td style="text-align: right">
+        {{ el.compensated_amount }}
+    </td>
+    <td style="text-align: left">
+        {{ el.last_status }}
+    </td>
+    <td>
+        {{ el.verdict_date }}
+    </td>
+    <td>
+        {{ el.effective_date }}
+    </td>
+    <td style="text-align: left">
+        {{ el.last_source_solution }}
+    </td>
+    <td style="text-align: left">
+        <div data-role="edit-row" style="padding: 4px 4px; text-align: left; display: flex; align-items: center; justify-content: space-between; position: relative">
+            <input style="width: 290px; text-align: left; font-size: 16px; flex: 1"
+                   type="text"
+                   name="last_solution"
+                   value="{{ el.last_solution }}"
+                   autocomplete="off"
+                   readonly
+                   class="region input_s_form" />
+
+            <div class="region-actions" style="display: flex; gap: 2px; margin-left: 4px">
+                <button class="edit-btn tiny-btn" data-id="{{ el.order_num }}" data-field="last_solution">✏️</button>
+                <button class="save-btn tiny-btn" data-id="{{ el.order_num }}" data-field="last_solution" style="display:none;">💾</button>
+                <button class="cancel-btn tiny-btn" data-id="{{ el.order_num }}" data-field="last_solution" style="display:none;">❌</button>
+            </div>
+        </div>
+</td>
+</tr>
+{% endfor %}
+

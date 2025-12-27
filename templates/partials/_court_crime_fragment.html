@@ -1,0 +1,56 @@
+{% if court_crime_items %}
+<table style="width: 100%; margin-top: 3px">
+    <colgroup>
+        <col style="width: 154px">
+        <col style="width: 154px">
+        <col style="width: 154px">
+        <col style="width: 130px">
+        <col style="width: 130px">
+        <col style="width: 154px">
+        <col style="width: 260px">
+        <col />
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('SUBMISSION_DATE') }}</th>
+            <th>{{ res_value('VERDICT_DATE') }}</th>
+            <th>{{ res_value('EFFECTIVE_DATE') }}</th>
+            <th>{{ res_value('SUM_CIV_AMOUNT') }}</th>
+            <th>{{ res_value('COMPENSATED_AMOUNT') }}</th>
+            <th data-help="solution_crime_part" data-role="helper" class="has-helper">{{ res_value('SOLUTION_CRIME_PART') }}</th>
+            <th data-help="solution_civ_part" data-role="helper" class="has-helper">{{ res_value('SOLUTION_CIV_PART') }}</th>
+            <th>{{ res_value('COURT_NAME') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in court_crime_items %}
+        <tr>
+            <td>{{ item.submission_date }}</td>
+            <td>{{ item.verdict_date }}</td>
+            <td>{{ item.effective_date }}</td>
+            <td style="text-align: right">{{ item.sum_civ_amount }}</td>
+            <td style="text-align: right">{{ item.compensated_amount }}</td>
+            <td style="text-align: left">{{ item.solution_crime_part }}</td>
+            <td style="text-align: left">{{ item.solution_civ_part }}</td>
+            <td style="text-align: left">{{ item.court_name }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        <tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_COURT_CRIME_ITEMS') }}</p>
+{% endif %}

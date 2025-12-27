@@ -1,0 +1,3 @@
+systemctl stop court
+systemctl start court
+systemctl status -l court

@@ -1,0 +1,37 @@
+﻿<form style="width: 450px; margin-top: 3px;" class="form_op" id="refundingForm" method="POST" action="/add_refundingl">
+    <table style="width: 420px; margin:4px 0px 4px 0px; box-shadow: none">
+        <colgroup>
+            <col style="width: 176px">
+            <col style="width: 176px">
+        </colgroup>
+        <tbody>
+            <tr class="disabled-row" style="padding: 4px 0px;">
+                <td style="border: none; width: 260px; text-align: left; font-size: 18px;">
+                    📅 {{ res_value('AGREEMENT_DATE') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_d" style="font-size: 18px;" type="date" name="agreement_date" required>
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">
+                    {{ res_value('UNTIL_DAY') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_d" style="font-size: 18px; text-align: left" type="number" name="until_day" min="1" max="31">
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">
+                    📆 {{ res_value('MATURITY_DATE') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_d" style="font-size: 18px; text-align: left" type="date" name="execution_date">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+</form>

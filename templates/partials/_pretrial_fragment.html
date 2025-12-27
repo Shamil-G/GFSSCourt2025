@@ -1,0 +1,41 @@
+{% if pretrial_items %}
+<table style="width: 1000px; margin-top:3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 170px">
+        <col style="width: 160px">
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('PRETRIAL_DATE') }}</th>
+            <th>{{ res_value('UNTIL_DAY') }}</th>
+            <th>{{ res_value('MATURITY_DATE') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in pretrial_items %}
+        <tr>
+            <td>{{ item.pretrial_date }}</td>
+            <td>{{ item.until_day }}</td>
+            <td>{{ item.maturity_date }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_PRETRIAL_ITEMS') }}</p>
+{% endif %}

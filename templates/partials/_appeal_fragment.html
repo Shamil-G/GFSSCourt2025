@@ -1,0 +1,47 @@
+{% if appeal_items %}
+<table style="width: 100%; margin-top: 3px">
+    <colgroup>
+        <col style="width: 160px">
+        <col style="width: 160px">
+        <col style="width: 280px">
+        <col style="width: 280px">
+        <col />
+        <col style="width: 360px">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>{{ res_value('APPEAL_DATE') }}</th>
+            <th>{{ res_value('EFFECTIVE_DATE') }}</th>
+            <th>{{ res_value('APPEAL_SOLUTION') }}</th>
+            <th>{{ res_value('APPEAL_CASSATION_SOLUTION') }}</th>
+            <th>{{ res_value('COURT_NAME') }}</th>
+            <th>{{ res_value('EMPLOYEE') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in appeal_items %}
+        <tr>
+            <td>{{ item.appeal_date }}</td>
+            <td>{{ item.effective_date }}</td>
+            <td style="text-align: left">{{ item.appeal_solution }}</td>
+            <td style="text-align: left">{{ item.cassation_appeal_solution }}</td>
+            <td style="text-align: left">{{ item.court_name }}</td>
+            <td style="text-align: left">{{ item.employee }}</td>
+        <tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="999">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1px;">
+                    <span id="footer-left"></span>
+                    <span id="footer-center" style="text-align: center;"></span>
+                    <span id="footTimestamp" class="tab-timestamp" style="text-align: right;"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+<p>{{ res_value('NONE_APPEAL_ITEMS') }}</p>
+{% endif %}

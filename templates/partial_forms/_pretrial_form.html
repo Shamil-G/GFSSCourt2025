@@ -1,0 +1,39 @@
+﻿<form style="width: 450px; margin-top: 3px;" class="form_op" id="pretrialForm" method="POST" action="/add_pretrial">
+    <table style="width: 420px; margin:4px 0px 4px 0px; box-shadow: none">
+        <colgroup>
+            <col style="width: 176px">
+            <col style="width: 176px">
+        </colgroup>
+        <tbody data-mutual-exclusive 
+               data-info-a="'Поле <📆 Дата погашения> будет недоступно, пока указано значение дня" 
+               data-info-b="Поле <Каждый месяц до> будет недоступно, пока указана дата <📆 Дата погашения>">
+            <tr class="disabled-row" style="padding: 4px 0px;">
+                <td style="border: none; width: 260px; text-align: left; font-size: 18px;">
+                    📅 * {{ res_value('AGREEMENT_DATE') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input class="input_d" style="font-size: 18px;" type="date" name="agreement_date" required>
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">
+                    {{ res_value('UNTIL_DAY') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input data-role="inputA" type="number" name="until_day" class="input_d" style="font-size: 18px; text-align: left; width: 60px" max="31" maxlength="2" >
+                </td>
+            </tr>
+            <tr class="disabled-row">
+                <td style="border: none; text-align: left; font-size: 18px;">
+                    📆 {{ res_value('MATURITY_DATE') }}
+                </td>
+                <td style="border: none; text-align: left">
+                    <input  data-role="inputB" type="date" name="execution_date" class="input_d" style="font-size: 18px; text-align: left">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <hr>
+    <button type="submit">💾 {{ res_value('BUTTON_SAVE') }}</button>
+</form>
